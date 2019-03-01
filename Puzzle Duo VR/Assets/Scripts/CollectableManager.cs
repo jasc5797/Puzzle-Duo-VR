@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollectableManager : MonoBehaviour
 {
@@ -39,7 +40,8 @@ public class CollectableManager : MonoBehaviour
 		if (collectableList.Count > 0) {
 			SetCurrentCollectable();
 		} else {
-			Application.LoadLevel(Application.loadedLevel);
+            int currentScene = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentScene);
 		}
 
 	}
@@ -64,13 +66,22 @@ public class CollectableManager : MonoBehaviour
 			Debug.Log("Set");
 			Debug.Log(collectableList[0].name);
 			GameObject newCurrentCollectable = Instantiate(collectableList[0], displayLocation.transform.position, displayLocation.transform.rotation) as GameObject;
-			newCurrentCollectable.transform.localScale *= 2;
-			newCurrentCollectable.transform.GetChild(0).gameObject.layer = displayLocation.layer;
-			newCurrentCollectable.layer = displayLocation.layer;
+            newCurrentCollectable.transform.localScale *= 2;
+            HideFromPlayer(newCurrentCollectable);
 			if (currentCollectable != null) {
 				Destroy(currentCollectable);
 			}
 			currentCollectable = newCurrentCollectable;
+		}
+	}
+
+	void HideFromPlayer(GameObject gameObject) {
+        int vrOnlyLayer = LayerMask.NameToLayer("VR Only");
+        gameObject.layer = vrOnlyLayer;
+		foreach (Transform child in gameObject.transform) {
+            GameObject childGameObject = child.gameObject;
+            childGameObject.layer = vrOnlyLayer;
+            HideFromPlayer(childGameObject);
 		}
 	}
 }

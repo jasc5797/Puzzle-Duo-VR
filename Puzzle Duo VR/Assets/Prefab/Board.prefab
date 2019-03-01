@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7723319820068592681}
   - component: {fileID: 7999460925180648158}
   - component: {fileID: 8756195940373765571}
+  - component: {fileID: 3533631578437966397}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -127,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 0.5
+  heightOffset: 0.5
 --- !u!114 &8756195940373765571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +141,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ad630ebaa9d70449a30f1edbcf0469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &3533631578437966397
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143804869626475481}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5239999, y: 1.8, z: 0.15}
+  m_Center: {x: -0.061736017, y: -0.3, z: -0.013522999}
 --- !u!1001 &2836574140525345023
 PrefabInstance:
   m_ObjectHideFlags: 0

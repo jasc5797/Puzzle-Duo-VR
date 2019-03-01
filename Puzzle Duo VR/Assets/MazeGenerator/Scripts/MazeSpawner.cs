@@ -74,7 +74,10 @@ public class MazeSpawner : MonoBehaviour {
 				GameObject tmp;
 				tmp = Instantiate(Floor,new Vector3(x,0,z), Quaternion.Euler(0,0,0)) as GameObject;
 				tmp.transform.parent = transform;
-				if(cell.WallRight){
+                tmp = Instantiate(Floor, new Vector3(x, 4, z), Quaternion.Euler(0, 0, 0)) as GameObject;
+                tmp.transform.parent = transform;
+
+                if (cell.WallRight){
 					tmp = Instantiate(Wall,new Vector3(x+CellWidth/2,0,z)+Wall.transform.position,Quaternion.Euler(0,90,0)) as GameObject;// right
 					tmp.transform.parent = transform;
 				}
@@ -108,7 +111,7 @@ public class MazeSpawner : MonoBehaviour {
 		}
 
 		for (int GoalCount = 0; GoalCount < 5; GoalCount++) {
-			Random.seed = System.DateTime.Now.Millisecond;
+			Random.InitState(System.DateTime.Now.Millisecond);
 			int rand = Random.Range(0, PossibleGoalCells.Count);
 			Vector3 vector3 = PossibleGoalCells[rand];
 			GameObject tmp = TmpCells[rand];
@@ -139,7 +142,7 @@ public class MazeSpawner : MonoBehaviour {
 				break;
 			}
 
-			tmp = Instantiate(GoalPrefab,vector3, Quaternion.Euler(0,0,0)) as GameObject;
+			tmp = Instantiate(GoalPrefab, vector3, Quaternion.Euler(0,0,0)) as GameObject;
 			tmp.transform.parent = transform;
 
 			collectableManagerScript.Add(tmp);

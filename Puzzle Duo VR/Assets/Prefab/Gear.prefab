@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5500599072876169952}
   - component: {fileID: 4323140491279943596}
   - component: {fileID: 2940545750085497631}
+  - component: {fileID: 5751370248762552361}
   m_Layer: 0
   m_Name: Gear
   m_TagString: Untagged
@@ -114,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 0.5
+  heightOffset: 0.5
 --- !u!114 &5500599072876169952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,3 +153,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ad630ebaa9d70449a30f1edbcf0469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &5751370248762552361
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3515401699489157674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.76893854
+  m_Center: {x: 0.0036675036, y: 0.011690497, z: 0.010936998}
