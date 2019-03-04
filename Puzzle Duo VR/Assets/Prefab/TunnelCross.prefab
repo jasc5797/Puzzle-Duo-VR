@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 31796550277714325}
   - component: {fileID: 8434223733408687672}
   - component: {fileID: 1639059997759605081}
+  - component: {fileID: 7010251212633076928}
   m_Layer: 0
   m_Name: TunnelCross
   m_TagString: Untagged
@@ -99,6 +100,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &7010251212633076928
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631009172344764705}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2.0000014, z: 2.0000005}
+  m_Center: {x: 0, y: -0.0000004768373, z: 0}
 --- !u!1 &3705548344434877384
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +124,7 @@ GameObject:
   - component: {fileID: 6662632308837140845}
   - component: {fileID: 3529218073121318231}
   - component: {fileID: 6969259240462805248}
+  - component: {fileID: 8853454992223502273}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -176,6 +191,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &8853454992223502273
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3705548344434877384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0000005, y: 2.0000014, z: 2.000012}
+  m_Center: {x: -6.7762636e-21, y: -0.00000017881405, z: 2.8421761e-12}
 --- !u!1 &5915339658802946504
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +215,7 @@ GameObject:
   - component: {fileID: 6775867612465833064}
   - component: {fileID: 7561703880260815338}
   - component: {fileID: 1480860263769755277}
+  - component: {fileID: 1300598919813227368}
   m_Layer: 0
   m_Name: Roof
   m_TagString: Untagged
@@ -253,3 +282,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1300598919813227368
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5915339658802946504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2.0000014, z: 2.0000005}
+  m_Center: {x: 0, y: -0.0000004768373, z: 0.0000047683716}
