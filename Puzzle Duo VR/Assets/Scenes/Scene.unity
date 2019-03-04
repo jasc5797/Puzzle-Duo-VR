@@ -33,7 +33,7 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 512
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -303,6 +303,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 290384665}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &370478786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 370478788}
+  - component: {fileID: 370478787}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &370478787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370478786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419d19d3d752a0849933823fdb05bc80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RowsCount: 5
+  ColumnsCount: 5
+  IsFullRandom: 1
+  RandomSeed: 0
+  StartX: 0
+  StartY: 0
+  TunnelStraight: {fileID: 7643713003692839674, guid: 20e248b9c8b9618459773e5a134e7ff4,
+    type: 3}
+  TunnelCross: {fileID: 631009172344764705, guid: 7ebce8ae6a06f85428486006d68d33b1,
+    type: 3}
+  TunnelEnd: {fileID: 5956961463348495376, guid: 11e485dec225dca4287934058faf1b24,
+    type: 3}
+  TunnelBend: {fileID: 3098197225229849396, guid: bd0ed95a77bf3134789f62585a7ac67d,
+    type: 3}
+--- !u!4 &370478788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370478786}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.094528, y: 2.3590488, z: -0.2976482}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &431140322
 PrefabInstance:
@@ -662,7 +719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &859672555
 MonoBehaviour:
   m_ObjectHideFlags: 0
