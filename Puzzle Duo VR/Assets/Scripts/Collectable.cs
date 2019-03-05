@@ -16,7 +16,7 @@ public class Collectable : MonoBehaviour
 	void OnTriggerEnter (Collider other) 
 	{
 		Debug.Log("Object entered the trigger");
-		if (collectableManagerScript.IsCurrentCollectable(gameObject)) {
+		if (other.tag == "Player" && collectableManagerScript.IsCurrentCollectable(gameObject)) {
 			gameObject.SetActive(false);
 			collectableManagerScript.Remove(gameObject);
 		}

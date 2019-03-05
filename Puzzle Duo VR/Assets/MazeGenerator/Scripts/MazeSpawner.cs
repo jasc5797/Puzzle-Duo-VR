@@ -25,16 +25,23 @@ public class MazeSpawner : MonoBehaviour {
 	public float CellWidth = 5;
 	public float CellHeight = 5;
 	public bool AddGaps = true;
+
+
 	public GameObject GoalPrefab1 = null;
 	public GameObject GoalPrefab2 = null;
 	public GameObject GoalPrefab3 = null;
 	public GameObject GoalPrefab4 = null;
 	public GameObject GoalPrefab5 = null;
+    public int DoorCount = 10;
+    public GameObject DoorPrefab = null;
+    public int EnemyCount = 5;
+    public GameObject EnemyPrefab = null;
 
 	private BasicMazeGenerator mMazeGenerator = null;
 
 	private List<Vector3> PossibleGoalCells = new List<Vector3>();
-	private List<GameObject> TmpCells = new List<GameObject>();
+    private List<DoorPosition> PossibleDoorPosition = new List<DoorPosition>();
+    private List<Vector3> PossibleEnemyCells = new List<Vector3>();
 
 	private GameObject collectableManagerObject;
 	private CollectableManager collectableManagerScript;
@@ -45,9 +52,15 @@ public class MazeSpawner : MonoBehaviour {
 		collectableManagerScript = (CollectableManager)collectableManagerObject.GetComponent(typeof(CollectableManager));
 
 
-		if (!FullRandom) {
-			Random.seed = RandomSeed;
+		if (FullRandom)
+        {
+			Random.InitState(System.DateTime.Now.Millisecond);
 		}
+        else
+        {
+            Random.InitState(RandomSeed);
+        }
+
 		switch (Algorithm) {
 		case MazeGenerationAlgorithm.PureRecursive:
 			mMazeGenerator = new RecursiveMazeGenerator (Rows, Columns);
@@ -74,6 +87,7 @@ public class MazeSpawner : MonoBehaviour {
 				GameObject tmp;
 				tmp = Instantiate(Floor,new Vector3(x,0,z), Quaternion.Euler(0,0,0)) as GameObject;
 				tmp.transform.parent = transform;
+
                 tmp = Instantiate(Floor, new Vector3(x, 4, z), Quaternion.Euler(0, 0, 0)) as GameObject;
                 tmp.transform.parent = transform;
 
@@ -81,22 +95,77 @@ public class MazeSpawner : MonoBehaviour {
 					tmp = Instantiate(Wall,new Vector3(x+CellWidth/2,0,z)+Wall.transform.position,Quaternion.Euler(0,90,0)) as GameObject;// right
 					tmp.transform.parent = transform;
 				}
+                else
+                {
+                    int neighborColumn = column + 1;
+                    if (neighborColumn < Columns) {
+                        MazeCell neighborCell = mMazeGenerator.GetMazeCell(row, neighborColumn);
+                        if (!neighborCell.WallLeft)
+                        {
+                            PossibleDoorPosition.Add(new DoorPosition(new Vector3(x + CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)));
+                        }
+                    }
+                }
+
 				if(cell.WallFront){
 					tmp = Instantiate(Wall,new Vector3(x,0,z+CellHeight/2)+Wall.transform.position,Quaternion.Euler(0,0,0)) as GameObject;// front
 					tmp.transform.parent = transform;
 				}
+                else
+                {
+                    int neighborRow = row + 1;
+                    if (neighborRow < Rows)
+                    {
+                        MazeCell neighborCell = mMazeGenerator.GetMazeCell(neighborRow, column);
+                        if (!neighborCell.WallBack)
+                        {
+                            PossibleDoorPosition.Add(new DoorPosition(new Vector3(x, 0, z + CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 0, 0)));
+                        }
+                    }
+                    
+                }
+
 				if(cell.WallLeft){
 					tmp = Instantiate(Wall,new Vector3(x-CellWidth/2,0,z)+Wall.transform.position,Quaternion.Euler(0,270,0)) as GameObject;// left
 					tmp.transform.parent = transform;
 				}
+                else
+                {
+                    int neighborColumn = column - 1;
+                    if (neighborColumn >= 0)
+                    {
+                        MazeCell neighborCell = mMazeGenerator.GetMazeCell(row, neighborColumn);
+                        if (!neighborCell.WallRight)
+                        {
+                            PossibleDoorPosition.Add(new DoorPosition(new Vector3(x - CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 270, 0)));
+                        }
+                    }
+                }
+
 				if(cell.WallBack){
 					tmp = Instantiate(Wall,new Vector3(x,0,z-CellHeight/2)+Wall.transform.position,Quaternion.Euler(0,180,0)) as GameObject;// back
 					tmp.transform.parent = transform;
 				}
+                else
+                {
+                    int neighborRow = row - 1;
+                    if (neighborRow >= 0)
+                    {
+                        MazeCell neighborCell = mMazeGenerator.GetMazeCell(neighborRow, column);
+                        if (!neighborCell.WallFront)
+                        {
+                            PossibleDoorPosition.Add(new DoorPosition(new Vector3(x, 0, z - CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 180, 0)));
+                        }
+                    }
+                }
+
 				if(cell.IsGoal){
 					PossibleGoalCells.Add(new Vector3(x,1.5f,z));
-					TmpCells.Add(tmp);
 				}
+                else
+                {
+                    PossibleEnemyCells.Add(new Vector3(x, 1.5f, z));
+                }
 			}
 		}
 		if(Pillar != null){
@@ -110,14 +179,13 @@ public class MazeSpawner : MonoBehaviour {
 			}
 		}
 
-		for (int GoalCount = 0; GoalCount < 5; GoalCount++) {
-			Random.InitState(System.DateTime.Now.Millisecond);
+        Random.InitState(System.DateTime.Now.Millisecond);
+
+        for (int GoalCount = 0; GoalCount < 5; GoalCount++) {
 			int rand = Random.Range(0, PossibleGoalCells.Count);
 			Vector3 vector3 = PossibleGoalCells[rand];
-			GameObject tmp = TmpCells[rand];
 
 			PossibleGoalCells.RemoveAt(rand);
-			TmpCells.RemoveAt(rand);
 
 			//Add Goals
 			GameObject GoalPrefab;
@@ -142,10 +210,44 @@ public class MazeSpawner : MonoBehaviour {
 				break;
 			}
 
-			tmp = Instantiate(GoalPrefab, vector3, Quaternion.Euler(0,0,0)) as GameObject;
+			GameObject tmp = Instantiate(GoalPrefab, vector3, Quaternion.Euler(0,0,0)) as GameObject;
 			tmp.transform.parent = transform;
 
 			collectableManagerScript.Add(tmp);
 		}
+
+        for (int i = 0; i < DoorCount; i++)
+        {
+            int rand = Random.Range(0, PossibleDoorPosition.Count);
+            DoorPosition doorPosition = PossibleDoorPosition[rand];
+
+            PossibleDoorPosition.RemoveAt(rand);
+
+            GameObject tmp = Instantiate(DoorPrefab, doorPosition.position, doorPosition.rotation) as GameObject;
+            tmp.transform.parent = transform;
+        }
+
+        for(int i = 0; i < EnemyCount; i++)
+        {
+            int rand = Random.Range(0, PossibleEnemyCells.Count);
+            Vector3 vector3 = PossibleEnemyCells[rand];
+
+            PossibleEnemyCells.RemoveAt(rand);
+
+            GameObject tmp = Instantiate(EnemyPrefab, vector3, Quaternion.Euler(0, 0, 0)) as GameObject;
+            tmp.transform.parent = transform;
+        }
 	}
+
+    private class DoorPosition
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+
+        public DoorPosition(Vector3 position, Quaternion rotation)
+        {
+            this.position = position;
+            this.rotation = rotation;
+        }
+    }
 }

@@ -11,7 +11,7 @@ public class MazeGenerator : MonoBehaviour
     void Start()
     {
         Maze maze = new Maze(rows, columns);
-        maze.Generate();
+        //maze.Generate();
     }
 
     void OnValidate()
