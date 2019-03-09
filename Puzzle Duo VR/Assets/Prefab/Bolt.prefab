@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e857cd5fcf04eb4796180c90ba17af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 0.5
-  heightOffset: 0.5
+  Strength: 0.5
+  HeightOffset: 0.5
 --- !u!114 &5786889515618906871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba25dd6fa5d074940b0a4b6ae7e38716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: {x: 0, y: 60, z: 0}
+  RotateSpeed: {x: 0, y: 60, z: 0}
 --- !u!114 &9121699610999522013
 MonoBehaviour:
   m_ObjectHideFlags: 0

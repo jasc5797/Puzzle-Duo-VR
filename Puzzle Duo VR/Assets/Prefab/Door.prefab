@@ -204,9 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2c2aed4eb91b4408d0061a7f4b7305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slidingDoor: {fileID: 2249225273771182832}
-  glowyBit: {fileID: 656557401160497434}
-  speed: 3
+  SlidingDoor: {fileID: 2249225273771182832}
+  GlowingRing: {fileID: 656557401160497434}
+  Speed: 3
   AllowPlayerInteract: 1
 --- !u!65 &2103388690436682953
 BoxCollider:

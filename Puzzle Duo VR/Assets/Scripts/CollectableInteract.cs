@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectable : MonoBehaviour
+public class CollectableInteract : MonoBehaviour
 {
 	private GameObject CollectableManagerObject;
 	private CollectableManager CollectableManagerScript;
