@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 444277741060820440}
   - component: {fileID: 444277741060820441}
   - component: {fileID: 7141522619649100812}
+  - component: {fileID: 3752856090028291248}
+  - component: {fileID: 1845492997346390866}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Electrifiable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,6 +111,7 @@ MonoBehaviour:
   MoveSpeed: 3
   MinDistance: 2
   MaxDistance: 15
+  Rigidbody: {fileID: 7141522619649100812}
 --- !u!54 &7141522619649100812
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,3 +128,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &3752856090028291248
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444277741060820446}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.75
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1845492997346390866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444277741060820446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60283c963d6cf746ad56ee13b8d0853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -40,16 +40,16 @@ public class MazeSpawner : MonoBehaviour {
 	private BasicMazeGenerator mMazeGenerator = null;
 
 	private List<Vector3> PossibleGoalCells = new List<Vector3>();
-    private List<DoorPosition> PossibleDoorPosition = new List<DoorPosition>();
+    private List<DoorPosition> PossibleDoorPositions = new List<DoorPosition>();
     private List<Vector3> PossibleEnemyCells = new List<Vector3>();
 
-	private GameObject collectableManagerObject;
-	private CollectableManager collectableManagerScript;
+	private GameObject CollectableManagerObject;
+	private CollectableManager CollectableManagerScript;
 
 	void Start () {
 
-		collectableManagerObject = GameObject.Find("Collectable Manager");
-		collectableManagerScript = (CollectableManager)collectableManagerObject.GetComponent(typeof(CollectableManager));
+		CollectableManagerObject = GameObject.Find("Collectable Manager");
+		CollectableManagerScript = (CollectableManager)CollectableManagerObject.GetComponent(typeof(CollectableManager));
 
 
 		if (FullRandom)
@@ -102,7 +102,7 @@ public class MazeSpawner : MonoBehaviour {
                         MazeCell neighborCell = mMazeGenerator.GetMazeCell(row, neighborColumn);
                         if (!neighborCell.WallLeft)
                         {
-                            PossibleDoorPosition.Add(new DoorPosition(new Vector3(x + CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)));
+                            PossibleDoorPositions.Add(new DoorPosition(new Vector3(x + CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)));
                         }
                     }
                 }
@@ -119,7 +119,7 @@ public class MazeSpawner : MonoBehaviour {
                         MazeCell neighborCell = mMazeGenerator.GetMazeCell(neighborRow, column);
                         if (!neighborCell.WallBack)
                         {
-                            PossibleDoorPosition.Add(new DoorPosition(new Vector3(x, 0, z + CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 0, 0)));
+                            PossibleDoorPositions.Add(new DoorPosition(new Vector3(x, 0, z + CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 0, 0)));
                         }
                     }
                     
@@ -137,7 +137,7 @@ public class MazeSpawner : MonoBehaviour {
                         MazeCell neighborCell = mMazeGenerator.GetMazeCell(row, neighborColumn);
                         if (!neighborCell.WallRight)
                         {
-                            PossibleDoorPosition.Add(new DoorPosition(new Vector3(x - CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 270, 0)));
+                            PossibleDoorPositions.Add(new DoorPosition(new Vector3(x - CellWidth / 2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 270, 0)));
                         }
                     }
                 }
@@ -154,7 +154,7 @@ public class MazeSpawner : MonoBehaviour {
                         MazeCell neighborCell = mMazeGenerator.GetMazeCell(neighborRow, column);
                         if (!neighborCell.WallFront)
                         {
-                            PossibleDoorPosition.Add(new DoorPosition(new Vector3(x, 0, z - CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 180, 0)));
+                            PossibleDoorPositions.Add(new DoorPosition(new Vector3(x, 0, z - CellHeight / 2) + Wall.transform.position, Quaternion.Euler(0, 180, 0)));
                         }
                     }
                 }
@@ -213,17 +213,17 @@ public class MazeSpawner : MonoBehaviour {
 			GameObject tmp = Instantiate(GoalPrefab, vector3, Quaternion.Euler(0,0,0)) as GameObject;
 			tmp.transform.parent = transform;
 
-			collectableManagerScript.Add(tmp);
+			CollectableManagerScript.Add(tmp);
 		}
 
         for (int i = 0; i < DoorCount; i++)
         {
-            int rand = Random.Range(0, PossibleDoorPosition.Count);
-            DoorPosition doorPosition = PossibleDoorPosition[rand];
+            int rand = Random.Range(0, PossibleDoorPositions.Count);
+            DoorPosition doorPosition = PossibleDoorPositions[rand];
 
-            PossibleDoorPosition.RemoveAt(rand);
+            PossibleDoorPositions.RemoveAt(rand);
 
-            GameObject tmp = Instantiate(DoorPrefab, doorPosition.position, doorPosition.rotation) as GameObject;
+            GameObject tmp = Instantiate(DoorPrefab, doorPosition.Position, doorPosition.Rotation) as GameObject;
             tmp.transform.parent = transform;
         }
 
@@ -241,13 +241,13 @@ public class MazeSpawner : MonoBehaviour {
 
     private class DoorPosition
     {
-        public Vector3 position;
-        public Quaternion rotation;
+        public Vector3 Position;
+        public Quaternion Rotation;
 
-        public DoorPosition(Vector3 position, Quaternion rotation)
+        public DoorPosition(Vector3 Rosition, Quaternion Rotation)
         {
-            this.position = position;
-            this.rotation = rotation;
+            this.Position = Rosition;
+            this.Rotation = Rotation;
         }
     }
 }

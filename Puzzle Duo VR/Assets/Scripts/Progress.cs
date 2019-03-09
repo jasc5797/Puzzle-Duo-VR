@@ -17,7 +17,7 @@ public class Progress : MonoBehaviour
 
         //draw the filled-in part:
         GUI.BeginGroup(new Rect(0, 0, size.x * barDisplay, size.y));
-        GUI.Box(new Rect(0, 0, size.x, size.y), fullTex);
+        GUI.Box(new Rect(0, 0, size.x, size.y), fullTex);        
         GUI.EndGroup();
         GUI.EndGroup();
     }

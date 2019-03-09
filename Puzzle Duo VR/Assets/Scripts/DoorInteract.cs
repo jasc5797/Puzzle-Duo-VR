@@ -2,41 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorInteract : MonoBehaviour
+public class DoorInteract : MonoBehaviour, Electrifiable
 {
-    public GameObject slidingDoor = null;
-    public GameObject glowyBit = null;
-    public float speed = 3f;
+    public GameObject SlidingDoor = null;
+    public GameObject GlowingRing = null;
+    public float Speed = 3f;
+    public bool AllowPlayerInteract = false;
 
-    private bool IsOpenning = false;
-    private Vector3 startPos;
-    private Vector3 endPos;
+    private bool IsPlayerInteract = false;
+    private bool IsElectrified = false;
+
+    private Vector3 StartPos;
+    private Vector3 EndPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        startPos = slidingDoor.transform.position;
-        endPos = startPos - new Vector3(0, 4, 0);
+        StartPos = SlidingDoor.transform.position;
+        EndPos = StartPos - new Vector3(0, 4, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Renderer renderer = glowyBit.GetComponent<Renderer>();
+        Renderer renderer = GlowingRing.GetComponent<Renderer>();
         Material material = renderer.material;
         float emission;
         // Mathf.PingPong(Time.time, 1.0f);
 
 
-        Vector3 currentPos = slidingDoor.transform.position;
-        if (IsOpenning)
+        Vector3 currentPos = SlidingDoor.transform.position;
+        if (IsPlayerInteract || IsElectrified)
         {
-            slidingDoor.transform.position = Vector3.MoveTowards(currentPos, endPos, Time.deltaTime * speed);
+            SlidingDoor.transform.position = Vector3.MoveTowards(currentPos, EndPos, Time.deltaTime * Speed);
             //-= new Vector3(0, speed, 0);
-            emission = 1.0f;
+            emission = 5.0f;
+            IsElectrified = false;
         } else
         {
-            slidingDoor.transform.position = Vector3.MoveTowards(currentPos, startPos, Time.deltaTime * speed);
+            SlidingDoor.transform.position = Vector3.MoveTowards(currentPos, StartPos, Time.deltaTime * Speed);
             emission = 0.0f;
         }
 
@@ -46,13 +50,18 @@ public class DoorInteract : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
-            IsOpenning = true;
+        if(AllowPlayerInteract && other.tag == "Player")
+            IsPlayerInteract = true;
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
-            IsOpenning = false;
+        if (AllowPlayerInteract && other.tag == "Player")
+            IsPlayerInteract = false;
+    }
+
+    public void Electrify()
+    {
+        IsElectrified = true;
     }
 }

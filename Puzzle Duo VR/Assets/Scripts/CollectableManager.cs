@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class CollectableManager : MonoBehaviour
 {
-	List<GameObject> collectableList = new List<GameObject>();
 
-	public GameObject displayLocation;
-	private GameObject currentCollectable;
 
-	bool ready = false;
+	public GameObject DisplayLocation;
+
+	private GameObject CurrentCollectable;
+    private List<GameObject> CollectableList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class CollectableManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(currentCollectable != null)
+		if(CurrentCollectable != null)
 		{
 			//Debug.Log(currentCollectable.transform.position.x + ", " + currentCollectable.transform.position.y);
 		}
@@ -29,15 +29,15 @@ public class CollectableManager : MonoBehaviour
 
 	public void Add(GameObject collectable) {
 		Debug.Log("Collectable added");
-		collectableList.Add(collectable);
+		CollectableList.Add(collectable);
 		ShuffleCollectableOrder();
 		SetCurrentCollectable();
 	}
 
 	public void Remove(GameObject collectable) {
 		Debug.Log("Collectable removed");
-		collectableList.Remove(collectable);
-		if (collectableList.Count > 0) {
+		CollectableList.Remove(collectable);
+		if (CollectableList.Count > 0) {
 			SetCurrentCollectable();
 		} else {
             int currentScene = SceneManager.GetActiveScene().buildIndex;
@@ -47,31 +47,31 @@ public class CollectableManager : MonoBehaviour
 	}
 
 	public bool IsCurrentCollectable(GameObject collectable) {
-		return collectableList.Count > 0 && collectableList[0] == collectable;
+		return CollectableList.Count > 0 && CollectableList[0] == collectable;
 	}
 
 	void ShuffleCollectableOrder() {
 		Debug.Log("Shuffling Collectables");
-		for (int i = 0; i < collectableList.Count; i++) {
-			GameObject temp = collectableList[i];
-			int rand = Random.Range(i, collectableList.Count);
-			collectableList[i] = collectableList[rand];
-			collectableList[rand] = temp;
+		for (int i = 0; i < CollectableList.Count; i++) {
+			GameObject temp = CollectableList[i];
+			int rand = Random.Range(i, CollectableList.Count);
+			CollectableList[i] = CollectableList[rand];
+			CollectableList[rand] = temp;
 		}
 	}
 
 	void SetCurrentCollectable() {
 		Debug.Log("Setting current collectable");
-		if (collectableList.Count > 0) {
+		if (CollectableList.Count > 0) {
 			Debug.Log("Set");
-			Debug.Log(collectableList[0].name);
-			GameObject newCurrentCollectable = Instantiate(collectableList[0], displayLocation.transform.position, displayLocation.transform.rotation) as GameObject;
+			Debug.Log(CollectableList[0].name);
+			GameObject newCurrentCollectable = Instantiate(CollectableList[0], DisplayLocation.transform.position, DisplayLocation.transform.rotation) as GameObject;
             newCurrentCollectable.transform.localScale *= 2;
             HideFromPlayer(newCurrentCollectable);
-			if (currentCollectable != null) {
-				Destroy(currentCollectable);
+			if (CurrentCollectable != null) {
+				Destroy(CurrentCollectable);
 			}
-			currentCollectable = newCurrentCollectable;
+			CurrentCollectable = newCurrentCollectable;
 		}
 	}
 

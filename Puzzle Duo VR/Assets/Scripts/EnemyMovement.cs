@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour, Electrifiable
 {
     public float MoveSpeed = 4;
 
     public float MinDistance = 2;
     public float MaxDistance = 15;
 
+    public Rigidbody rigidbody;
+
     private Transform PlayerTransform;
     private Vector3? PreviousPos;
 
     private bool AdvancedMovement = false;
+
+    private bool IsElectrified = false;
+
+
+
+    public void Electrify()
+    {
+        IsElectrified = true;
+    }
 
 
     // Start is called before the first frame update
@@ -24,38 +35,68 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         
-
-        float distance = Vector3.Distance(transform.position, PlayerTransform.position);
-        if (distance >= MinDistance && distance <= MaxDistance)
+        if (!IsElectrified)
         {
-            Vector3 heading = PlayerTransform.position - transform.position;
-            Vector3 direction = heading / distance;
-
-
-            RaycastHit hit;
-            Ray ray = new Ray(transform.position, direction);
-            //, ~LayerMask.NameToLayer("Trigger")
-            if (Physics.Raycast(ray, out hit, MaxDistance) && hit.collider.tag == "Player") {
-                Vector3 PlayerPos = PlayerTransform.position;
-                Vector3 targetPos = new Vector3(PlayerPos.x, transform.position.y, PlayerPos.z);
-
-                transform.LookAt(targetPos);
-                transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-
-                PreviousPos = targetPos;
-            }
-            else if (AdvancedMovement && PreviousPos != null)
+            float distance = Vector3.Distance(transform.position, PlayerTransform.position);
+            if (distance >= MinDistance && distance <= MaxDistance)
             {
-                transform.LookAt(PreviousPos.GetValueOrDefault());
-                transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+                Vector3 heading = PlayerTransform.position - transform.position;
+                Vector3 direction = heading / distance;
 
-                if (Vector3.Distance(transform.position, PreviousPos.GetValueOrDefault()) < 0.5)
+
+                RaycastHit hit;
+                Ray ray = new Ray(transform.position, direction);
+                //, ~LayerMask.NameToLayer("Trigger")
+                int mask = ~(1 << 10);
+                if (Physics.Raycast(ray, out hit, MaxDistance, mask) && hit.collider.tag == "Player")
                 {
-                    PreviousPos = null;
+                    Vector3 PlayerPos = PlayerTransform.position;
+                    Vector3 targetPos = new Vector3(PlayerPos.x, transform.position.y, PlayerPos.z);
+
+                    transform.LookAt(targetPos);
+                    transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+
+                    PreviousPos = targetPos;
+                }
+                else if (AdvancedMovement && PreviousPos != null)
+                {
+                    transform.LookAt(PreviousPos.GetValueOrDefault());
+                    transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+
+                    if (Vector3.Distance(transform.position, PreviousPos.GetValueOrDefault()) < 0.5)
+                    {
+                        PreviousPos = null;
+                    }
+                }
+
+            }
+            else if (distance <= MaxDistance)
+            {
+                Vector3 heading = PlayerTransform.position - transform.position;
+                Vector3 direction = heading / distance;
+
+                RaycastHit hit;
+                Ray ray = new Ray(transform.position, direction);
+                //, ~LayerMask.NameToLayer("Trigger")
+                int mask = ~(1 << 10);
+                if (Physics.Raycast(ray, out hit, MaxDistance, mask) && hit.collider.tag == "Player")
+                {
+                    Vector3 PlayerPos = PlayerTransform.position;
+                    Vector3 targetPos = new Vector3(PlayerPos.x, transform.position.y, PlayerPos.z);
+
+                    transform.LookAt(targetPos);
+
+                    PreviousPos = targetPos;
                 }
             }
-
+        }
+        else
+        {
+            rigidbody.AddForce(transform.forward * 0.5f);
+            IsElectrified = false;
         }
     }
 }
