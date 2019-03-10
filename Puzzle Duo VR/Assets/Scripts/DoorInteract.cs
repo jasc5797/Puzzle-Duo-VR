@@ -7,7 +7,7 @@ public class DoorInteract : MonoBehaviour, Electrifiable
     public GameObject SlidingDoor = null;
     public GameObject GlowingRing = null;
     public float Speed = 3f;
-    public bool AllowPlayerInteract = true;
+    public bool AllowPlayerInteract = false;
 
     private bool IsPlayerInteract = false;
     private bool IsElectrified = false;
@@ -32,7 +32,7 @@ public class DoorInteract : MonoBehaviour, Electrifiable
 
 
         Vector3 currentPos = SlidingDoor.transform.position;
-        if (IsPlayerInteract || IsElectrified)
+        if ((IsPlayerInteract  && AllowPlayerInteract) || IsElectrified)
         {
             SlidingDoor.transform.position = Vector3.MoveTowards(currentPos, EndPos, Time.deltaTime * Speed);
             //-= new Vector3(0, speed, 0);
@@ -50,8 +50,8 @@ public class DoorInteract : MonoBehaviour, Electrifiable
 
     void OnTriggerEnter(Collider other)
     {
-        if(AllowPlayerInteract && other.tag == "Player")
-            IsPlayerInteract = true;
+       // if(AllowPlayerInteract && other.tag == "Player")
+           // IsPlayerInteract = true;
     }
 
     void OnTriggerExit(Collider other)
