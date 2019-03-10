@@ -111,7 +111,7 @@ MonoBehaviour:
   MoveSpeed: 3
   MinDistance: 2
   MaxDistance: 15
-  Rigidbody: {fileID: 7141522619649100812}
+  rigidbody: {fileID: 7141522619649100812}
 --- !u!54 &7141522619649100812
 Rigidbody:
   m_ObjectHideFlags: 0

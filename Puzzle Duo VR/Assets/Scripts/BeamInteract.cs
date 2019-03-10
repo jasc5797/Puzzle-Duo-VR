@@ -1,39 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
-public class LaserInteract : MonoBehaviour
+public class BeamInteract : MonoBehaviour
 {
-    public Camera camera;
+    //public Camera cam;
+
+    public GameObject Model;
 
     public LineRenderer Beam;
     public ParticleSystem StartingParticles;
     public ParticleSystem HitParticles;
 
-    public float MaxLength;
+    public float MaxLength = 25;
+
+    public bool isLeftController = true;
+
+    private Hand hand;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        hand = GetComponent<Hand>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //laser.SetPosition(0, transform.position);
 
-        var mousePos = Input.mousePosition;
-        var rayMouse = camera.ScreenPointToRay(mousePos);
 
+        Beam.SetPosition(0, Model.transform.position);
+        StartingParticles.transform.position = Model.transform.position;
+
+       // var mousePos = Input.mousePosition;
+       // var rayMouse = cam.ScreenPointToRay(mousePos);
+        
         RaycastHit hit;
-        if(Physics.Raycast(rayMouse.origin, rayMouse.direction, out hit, MaxLength))
+        if (Physics.Raycast(Model.transform.position, Model.transform.rotation * Vector3.forward, out hit, MaxLength))
         {
             if (hit.collider)
             {
                 Beam.SetPosition(1, hit.point - transform.position);
                 HitParticles.transform.position = hit.point;
-                HitParticles.Play();
+                if (HitParticles.isStopped)
+                    HitParticles.Play();
+                if (StartingParticles.isStopped)
+                    StartingParticles.Play();
 
                 if(hit.collider.tag == "Electrifiable")
                 { 
@@ -43,9 +56,12 @@ public class LaserInteract : MonoBehaviour
         }
         else
         {
-            var pos = rayMouse.GetPoint(MaxLength);
-            Beam.SetPosition(1, pos);
-            HitParticles.Stop();
+            var pos = Model.transform.rotation * Vector3.forward * MaxLength;
+            // var pos = rayMouse.GetPoint(MaxLength);
+           // Beam.SetPosition(1, pos);
+           Beam.SetPosition(1, Beam.GetPosition(0));
+           HitParticles.Stop();
+           // StartingParticles.Stop();
         }
 
        // StartingParticles.transform.position = laser.GetPosition(0);

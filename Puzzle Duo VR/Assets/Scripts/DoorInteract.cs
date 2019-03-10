@@ -7,7 +7,7 @@ public class DoorInteract : MonoBehaviour, Electrifiable
     public GameObject SlidingDoor = null;
     public GameObject GlowingRing = null;
     public float Speed = 3f;
-    public bool AllowPlayerInteract = false;
+    public bool AllowPlayerInteract = true;
 
     private bool IsPlayerInteract = false;
     private bool IsElectrified = false;
