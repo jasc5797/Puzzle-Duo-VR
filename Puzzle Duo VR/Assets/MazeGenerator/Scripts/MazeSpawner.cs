@@ -27,11 +27,11 @@ public class MazeSpawner : MonoBehaviour {
 	public bool AddGaps = true;
 
 
-	public GameObject GoalPrefab1 = null;
-	public GameObject GoalPrefab2 = null;
-	public GameObject GoalPrefab3 = null;
-	public GameObject GoalPrefab4 = null;
-	public GameObject GoalPrefab5 = null;
+	public GameObject CollectablePrefab1 = null;
+	public GameObject CollectablePrefab2 = null;
+	public GameObject CollectablePrefab3 = null;
+	public GameObject CollectablePrefab4 = null;
+	public GameObject CollectablePrefab5 = null;
     public int DoorCount = 10;
     public GameObject DoorPrefab = null;
     public int EnemyCount = 5;
@@ -191,22 +191,22 @@ public class MazeSpawner : MonoBehaviour {
 			GameObject GoalPrefab;
 			switch (GoalCount) {
 			case 0:
-				GoalPrefab = GoalPrefab1;
+				GoalPrefab = CollectablePrefab1;
 				break;
 			case 1:
-				GoalPrefab = GoalPrefab2;
+				GoalPrefab = CollectablePrefab2;
 				break;
 			case 2:
-				GoalPrefab = GoalPrefab3;
+				GoalPrefab = CollectablePrefab3;
 				break;
 			case 3:
-				GoalPrefab = GoalPrefab4;
+				GoalPrefab = CollectablePrefab4;
 				break;
 			case 4:
-				GoalPrefab = GoalPrefab5;
+				GoalPrefab = CollectablePrefab5;
 				break;
 			default:
-				GoalPrefab = GoalPrefab1;
+				GoalPrefab = CollectablePrefab1;
 				break;
 			}
 

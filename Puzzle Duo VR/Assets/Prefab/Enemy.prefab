@@ -112,6 +112,7 @@ MonoBehaviour:
   MinDistance: 2
   MaxDistance: 15
   rigidbody: {fileID: 7141522619649100812}
+  EnemyInteractScript: {fileID: 1845492997346390866}
 --- !u!54 &7141522619649100812
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,3 +155,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60283c963d6cf746ad56ee13b8d0853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsElectrified: 0

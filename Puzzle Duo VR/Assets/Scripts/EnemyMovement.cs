@@ -2,29 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour, Electrifiable
+public class EnemyMovement : MonoBehaviour
 {
     public float MoveSpeed = 4;
 
     public float MinDistance = 2;
     public float MaxDistance = 15;
 
-    public Rigidbody rigidbody;
+    public Rigidbody Rigidbody;
+
+    public EnemyInteract EnemyInteractScript;
 
     private Transform PlayerTransform;
     private Vector3? PreviousPos;
 
-    private bool AdvancedMovement = false;
+    private bool AdvancedMovement = false; //remove before turning in this project
 
     private bool IsElectrified = false;
-
-
-
-    public void Electrify()
-    {
-        IsElectrified = true;
-    }
-
 
     // Start is called before the first frame update
     void Start()
@@ -36,9 +30,7 @@ public class EnemyMovement : MonoBehaviour, Electrifiable
     void Update()
     {
 
-
-        
-        if (!IsElectrified)
+        if (!EnemyInteractScript.IsElectrified)
         {
             float distance = Vector3.Distance(transform.position, PlayerTransform.position);
             if (distance >= MinDistance && distance <= MaxDistance)
@@ -95,8 +87,8 @@ public class EnemyMovement : MonoBehaviour, Electrifiable
         }
         else
         {
-            rigidbody.AddForce(transform.forward * 0.5f);
-            IsElectrified = false;
+            Rigidbody.AddForce(transform.forward * 0.5f);
+            EnemyInteractScript.IsElectrified = false;
         }
     }
 }

@@ -47,7 +47,7 @@ public class CollectableManager : MonoBehaviour
 	}
 
 	public bool IsCurrentCollectable(GameObject collectable) {
-		return CollectableList.Count > 0 && CollectableList[0] == collectable;
+		return collectable == CurrentCollectable;
 	}
 
 	void ShuffleCollectableOrder() {

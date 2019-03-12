@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR.InteractionSystem;
 
 public class BeamInteract : MonoBehaviour
 {
@@ -15,21 +14,18 @@ public class BeamInteract : MonoBehaviour
 
     public float MaxLength = 25;
 
-    public bool isLeftController = true;
+    //public bool isLeftController = true;
 
-    private Hand hand;
 
     // Start is called before the first frame update
     void Start()
     {
-        hand = GetComponent<Hand>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         Beam.SetPosition(0, Model.transform.position);
         StartingParticles.transform.position = Model.transform.position;
 
