@@ -20,6 +20,7 @@ public class MazeSpawner : MonoBehaviour {
 	public GameObject Floor = null;
 	public GameObject Wall = null;
 	public GameObject Pillar = null;
+    public GameObject Roof = null;
 	public int Rows = 5;
 	public int Columns = 5;
 	public float CellWidth = 5;
@@ -88,8 +89,8 @@ public class MazeSpawner : MonoBehaviour {
 				tmp = Instantiate(Floor,new Vector3(x,0,z), Quaternion.Euler(0,0,0)) as GameObject;
 				tmp.transform.parent = transform;
 
-               // tmp = Instantiate(Floor, new Vector3(x, 4, z), Quaternion.Euler(0, 0, 0)) as GameObject;
-                //tmp.transform.parent = transform;
+                tmp = Instantiate(Roof, new Vector3(x, 4, z), Quaternion.Euler(-90, 0, 0)) as GameObject;
+                tmp.transform.parent = transform;
 
                 if (cell.WallRight){
 					tmp = Instantiate(Wall,new Vector3(x+CellWidth/2,0,z)+Wall.transform.position,Quaternion.Euler(0,90,0)) as GameObject;// right
