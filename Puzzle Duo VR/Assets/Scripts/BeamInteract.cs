@@ -33,7 +33,8 @@ public class BeamInteract : MonoBehaviour
        // var rayMouse = cam.ScreenPointToRay(mousePos);
         
         RaycastHit hit;
-        if (Physics.Raycast(Model.transform.position, Model.transform.rotation * Vector3.forward, out hit, MaxLength))
+        int mask = ~(1 << 11);
+        if (Physics.Raycast(Model.transform.position, Model.transform.rotation * Vector3.forward, out hit, MaxLength, mask))
         {
             if (hit.collider)
             {

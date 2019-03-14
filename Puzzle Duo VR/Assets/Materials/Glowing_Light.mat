@@ -10,7 +10,7 @@ Material:
   m_Name: Glowing_Light
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -74,4 +74,4 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.99261457, g: 1, b: 0.3443396, a: 1}
-    - _EmissionColor: {r: 2.327094, g: 2.1661003, b: 2.1661003, a: 1}
+    - _EmissionColor: {r: 2.4034147, g: 2.2671394, b: 0.87293833, a: 1}
