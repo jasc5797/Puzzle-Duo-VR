@@ -108,11 +108,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244cb39ab6d2a044a9f34be8a91c8175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 3
-  MinDistance: 2
+  MoveSpeed: 0.5
+  MinDistance: 1
   MaxDistance: 15
   Rigidbody: {fileID: 7141522619649100812}
   EnemyInteractScript: {fileID: 1845492997346390866}
+  TimeElectrified: 5
 --- !u!54 &7141522619649100812
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,3 +157,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsElectrified: 0
+  Rigidbody: {fileID: 7141522619649100812}

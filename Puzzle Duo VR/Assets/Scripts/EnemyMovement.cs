@@ -13,12 +13,15 @@ public class EnemyMovement : MonoBehaviour
 
     public EnemyInteract EnemyInteractScript;
 
+    public float TimeElectrified = 5.0f;
+
     private Transform PlayerTransform;
     private Vector3? PreviousPos;
 
     private bool AdvancedMovement = false; //remove before turning in this project
 
-    private bool IsElectrified = false;
+
+    private float ElectrifiedTimer = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +32,17 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (!EnemyInteractScript.IsElectrified)
+        if (!EnemyInteractScript.IsElectrified && ElectrifiedTimer > 0)
         {
+            ElectrifiedTimer -= Time.deltaTime;
+        } else if (EnemyInteractScript.IsElectrified)
+        {
+            ElectrifiedTimer = TimeElectrified;
+        }
+
+        if (!EnemyInteractScript.IsElectrified && ElectrifiedTimer <= 0)
+        {
+            Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             float distance = Vector3.Distance(transform.position, PlayerTransform.position);
             if (distance >= MinDistance && distance <= MaxDistance)
             {
@@ -89,6 +100,7 @@ public class EnemyMovement : MonoBehaviour
         {
             Rigidbody.AddForce(transform.forward * 0.5f);
             EnemyInteractScript.IsElectrified = false;
+            Rigidbody.constraints = 0;
         }
     }
 }

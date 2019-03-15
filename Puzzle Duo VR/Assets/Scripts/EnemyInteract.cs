@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyInteract : MonoBehaviour, Electrifiable
 {
     public bool IsElectrified = false;
+    public Rigidbody Rigidbody;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +24,30 @@ public class EnemyInteract : MonoBehaviour, Electrifiable
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Enemy hit");
+            DamagePlayer(other.gameObject);
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            DamagePlayer(other.gameObject);
+        }
+    }
+
+    void DamagePlayer(GameObject player)
+    {
+        Debug.Log("Enemy hit");
+        if (!IsElectrified)
+        {
+            player.SendMessageUpwards("TakeDamage", gameObject);
+            Vector3 direction = transform.position - player.transform.position;
+            if (direction.y < 0)
+            {
+                direction.y = -direction.y;
+            }
+            Rigidbody.AddForce(direction.normalized * 15.0f);
         }
     }
 
