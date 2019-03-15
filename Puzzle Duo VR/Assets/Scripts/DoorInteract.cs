@@ -51,7 +51,9 @@ public class DoorInteract : MonoBehaviour, Electrifiable
     void OnTriggerEnter(Collider other)
     {
        if(AllowPlayerInteract && other.tag == "Player")
-            IsPlayerInteract = true;
+        {
+            // IsPlayerInteract = true;
+        }
     }
 
     void OnTriggerExit(Collider other)
