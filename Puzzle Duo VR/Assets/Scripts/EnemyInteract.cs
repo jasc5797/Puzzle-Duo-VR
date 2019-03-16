@@ -39,7 +39,7 @@ public class EnemyInteract : MonoBehaviour, Electrifiable
     void DamagePlayer(GameObject player)
     {
         Debug.Log("Enemy hit");
-        if (!IsElectrified && enemyMovement.ElectrifiedTimer > 0)
+        if (!IsElectrified && enemyMovement.ElectrifiedTimer <= 0)
         {
             player.SendMessageUpwards("TakeDamage", gameObject);
             Vector3 direction = transform.position - player.transform.position;

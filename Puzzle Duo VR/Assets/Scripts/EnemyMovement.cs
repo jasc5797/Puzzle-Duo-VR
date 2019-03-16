@@ -40,6 +40,11 @@ public class EnemyMovement : MonoBehaviour
             ElectrifiedTimer = TimeElectrified;
         }
 
+        if(ElectrifiedTimer <= 0)
+        {
+            ElectrifiedTimer = 0;
+        }
+
         if (!EnemyInteractScript.IsElectrified && ElectrifiedTimer <= 0)
         {
             Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
