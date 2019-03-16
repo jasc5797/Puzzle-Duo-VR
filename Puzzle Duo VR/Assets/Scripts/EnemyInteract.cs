@@ -6,7 +6,7 @@ public class EnemyInteract : MonoBehaviour, Electrifiable
 {
     public bool IsElectrified = false;
     public Rigidbody Rigidbody;
-
+    public EnemyMovement enemyMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +39,7 @@ public class EnemyInteract : MonoBehaviour, Electrifiable
     void DamagePlayer(GameObject player)
     {
         Debug.Log("Enemy hit");
-        if (!IsElectrified)
+        if (!IsElectrified && enemyMovement.ElectrifiedTimer > 0)
         {
             player.SendMessageUpwards("TakeDamage", gameObject);
             Vector3 direction = transform.position - player.transform.position;

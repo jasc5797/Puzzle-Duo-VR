@@ -114,6 +114,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 7141522619649100812}
   EnemyInteractScript: {fileID: 1845492997346390866}
   TimeElectrified: 5
+  ElectrifiedTimer: 0
 --- !u!54 &7141522619649100812
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -158,3 +159,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsElectrified: 0
   Rigidbody: {fileID: 7141522619649100812}
+  enemyMovement: {fileID: 444277741060820441}

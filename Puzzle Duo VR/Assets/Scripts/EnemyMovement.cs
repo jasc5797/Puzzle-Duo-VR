@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
     private bool AdvancedMovement = false; //remove before turning in this project
 
 
-    private float ElectrifiedTimer = 0.0f;
+    public float ElectrifiedTimer = 0.0f;
 
     // Start is called before the first frame update
     void Start()
