@@ -6,14 +6,16 @@ public class DoorInteract : MonoBehaviour, Electrifiable
 {
     public GameObject SlidingDoor = null;
     public GameObject GlowingRing = null;
-    public float Speed = 3f;
-    public bool AllowPlayerInteract = true;
+    public float Speed = 4f;
+
 
     private bool IsPlayerInteract = false;
     private bool IsElectrified = false;
 
     private Vector3 StartPos;
     private Vector3 EndPos;
+
+    private bool IsOpenning = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,16 +34,21 @@ public class DoorInteract : MonoBehaviour, Electrifiable
 
 
         Vector3 currentPos = SlidingDoor.transform.position;
-        if ((IsPlayerInteract  && AllowPlayerInteract) || IsElectrified)
+        if (IsElectrified || (IsOpenning && IsPlayerInteract))
         {
             SlidingDoor.transform.position = Vector3.MoveTowards(currentPos, EndPos, Time.deltaTime * Speed);
             //-= new Vector3(0, speed, 0);
             emission = 5.0f;
             IsElectrified = false;
+            IsOpenning = true;
         } else
         {
             SlidingDoor.transform.position = Vector3.MoveTowards(currentPos, StartPos, Time.deltaTime * Speed);
             emission = 0.0f;
+            if (SlidingDoor.transform.position == StartPos)
+            {
+                IsOpenning = false;
+            }
         }
 
         Color finalColor = material.color * Mathf.LinearToGammaSpace(emission);
@@ -50,15 +57,15 @@ public class DoorInteract : MonoBehaviour, Electrifiable
 
     void OnTriggerEnter(Collider other)
     {
-       if(AllowPlayerInteract && other.tag == "Player")
+       if(other.tag == "Player")
         {
-            // IsPlayerInteract = true;
+            IsPlayerInteract = true;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (AllowPlayerInteract && other.tag == "Player")
+        if (other.tag == "Player")
             IsPlayerInteract = false;
     }
 

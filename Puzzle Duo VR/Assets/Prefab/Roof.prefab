@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1388530783791696105}
   - component: {fileID: 2806122767658611756}
   - component: {fileID: 1258881615270227694}
-  - component: {fileID: 4228456416637092745}
+  - component: {fileID: 517412561094937815}
   m_Layer: 11
   m_Name: Roof
   m_TagString: Untagged
@@ -99,7 +99,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!64 &4228456416637092745
+--- !u!64 &517412561094937815
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,5 +202,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2.0000005, z: 2.0000005}
-  m_Center: {x: 0, y: 2.6971961e-17, z: 0.0000019073486}
+  m_Size: {x: 1.511996, y: 1.5119964, z: 0.038766004}
+  m_Center: {x: 0, y: -4.0168417e-17, z: 0.16650298}

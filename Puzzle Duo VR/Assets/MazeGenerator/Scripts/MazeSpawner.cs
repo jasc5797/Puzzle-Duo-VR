@@ -163,7 +163,7 @@ public class MazeSpawner : MonoBehaviour {
 				if(cell.IsGoal){
 					PossibleGoalCells.Add(new Vector3(x,1.5f,z));
 				}
-                else
+                else if (x > 2 && z > 2)
                 {
                     PossibleEnemyCells.Add(new Vector3(x, 1.5f, z));
                 }
