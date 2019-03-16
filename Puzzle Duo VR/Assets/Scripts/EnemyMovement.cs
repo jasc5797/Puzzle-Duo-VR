@@ -23,10 +23,13 @@ public class EnemyMovement : MonoBehaviour
 
     public float ElectrifiedTimer = 0.0f;
 
+    private Animator Animator;
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        Animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -66,6 +69,8 @@ public class EnemyMovement : MonoBehaviour
 
                     transform.LookAt(targetPos);
                     transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+                    Animator.SetBool("Idle", false);
+                    Animator.SetBool("Walk", true);
 
                     PreviousPos = targetPos;
                 }
@@ -99,6 +104,8 @@ public class EnemyMovement : MonoBehaviour
 
                     PreviousPos = targetPos;
                 }
+                Animator.SetBool("Idle", true);
+                Animator.SetBool("Walk", false);
             }
         }
         else
@@ -106,6 +113,8 @@ public class EnemyMovement : MonoBehaviour
             Rigidbody.AddForce(transform.forward * 0.5f);
             EnemyInteractScript.IsElectrified = false;
             Rigidbody.constraints = 0;
+            Animator.SetBool("Idle", true);
+            Animator.SetBool("Walk", false);
         }
     }
 }
