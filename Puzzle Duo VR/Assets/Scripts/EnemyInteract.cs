@@ -8,10 +8,12 @@ public class EnemyInteract : MonoBehaviour, Electrifiable
     public Rigidbody Rigidbody;
     public EnemyMovement enemyMovement;
 
+    public ParticleSystem stunParticle;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        stunParticle.Stop();
     }
 
     // Update is called once per frame
@@ -48,6 +50,13 @@ public class EnemyInteract : MonoBehaviour, Electrifiable
                 direction.y = -direction.y;
             }
             Rigidbody.AddForce(direction.normalized * 15.0f);
+
+            stunParticle.Stop();
+
+        }
+        else
+        {
+            stunParticle.Play();
         }
     }
 

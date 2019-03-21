@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5608444458532833854}
   - component: {fileID: 5500599072876169952}
   - component: {fileID: 4323140491279943596}
-  - component: {fileID: 2940545750085497631}
   - component: {fileID: 5751370248762552361}
   m_Layer: 0
   m_Name: Gear
@@ -114,8 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e857cd5fcf04eb4796180c90ba17af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 0.5
-  heightOffset: 0.5
+  Strength: 0.5
+  HeightOffset: 0.5
 --- !u!114 &5500599072876169952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,20 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba25dd6fa5d074940b0a4b6ae7e38716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: {x: 0, y: 60, z: 0}
+  RotationSpeed: {x: 0, y: 60, z: 0}
 --- !u!114 &4323140491279943596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3515401699489157674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28ad630ebaa9d70449a30f1edbcf0469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2940545750085497631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
