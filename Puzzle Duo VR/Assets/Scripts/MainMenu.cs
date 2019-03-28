@@ -29,17 +29,17 @@ public class MainMenu : MonoBehaviour
     private void LoadLevel1()
     {
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Level 1");
     }
 
     private void LoadLevel2()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Level 2");
     }
 
     private void LoadLevel3()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Level 3");
     }
 
     private void Quit()
