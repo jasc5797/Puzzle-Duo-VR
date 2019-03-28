@@ -34,12 +34,12 @@ public class MainMenu : MonoBehaviour
 
     private void LoadLevel2()
     {
-
+        SceneManager.LoadScene(2);
     }
 
     private void LoadLevel3()
     {
-
+        SceneManager.LoadScene(3);
     }
 
     private void Quit()
