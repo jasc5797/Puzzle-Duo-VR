@@ -34,7 +34,7 @@ public class DoorInteract : MonoBehaviour, Electrifiable
 
 
         Vector3 currentPos = SlidingDoor.transform.position;
-        if (IsElectrified || (IsOpenning && IsPlayerInteract) || IsPlayerInteract)
+        if (IsElectrified || (IsOpenning && IsPlayerInteract))
         {
             SlidingDoor.transform.position = Vector3.MoveTowards(currentPos, EndPos, Time.deltaTime * Speed);
             //-= new Vector3(0, speed, 0);
