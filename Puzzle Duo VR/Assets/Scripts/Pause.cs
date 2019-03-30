@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Pause : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Pause : MonoBehaviour
     public GameObject pausePanel;
 
 
+    //private EventSystem eventSystem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +26,14 @@ public class Pause : MonoBehaviour
         resumeLevelButton.onClick.AddListener(ResumeLevel);
         returnToMainButton.onClick.AddListener(ReturnToMainMenu);
         quitButton.onClick.AddListener(Quit);
+
+        //eventSystem = GetComponent<EventSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonUp("Pause"))
         {
             Debug.Log("Q Pressed");
             if (!pausePanel.activeInHierarchy)
@@ -48,6 +53,8 @@ public class Pause : MonoBehaviour
     {
         Time.timeScale = 0;
         pausePanel.SetActive(true);
+        //resumeLevelButton.Select();
+        //eventSystem.SetSelectedGameObject(resumeLevelButton.gameObject);
 
     }
 
