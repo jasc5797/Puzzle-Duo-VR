@@ -526,6 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825fa623abc44d348a6bb1460285f68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingTime: 300
   countdownText: {fileID: 918661561}
 --- !u!1 &918661559
 GameObject:
@@ -1390,21 +1391,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5300063534969539076, guid: 98cb33051752ae94380242e270eaca19,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831735133900471852, guid: 98cb33051752ae94380242e270eaca19,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 470089693767495641, guid: 98cb33051752ae94380242e270eaca19,
         type: 3}
       propertyPath: slider
       value: 
       objectReference: {fileID: 1041508659}
+    - target: {fileID: 8831735133900471852, guid: 98cb33051752ae94380242e270eaca19,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300063534969539076, guid: 98cb33051752ae94380242e270eaca19,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5300063534969539076, guid: 98cb33051752ae94380242e270eaca19, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 98cb33051752ae94380242e270eaca19, type: 3}

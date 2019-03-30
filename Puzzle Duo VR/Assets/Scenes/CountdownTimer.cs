@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class CountdownTimer : MonoBehaviour
 {
     float timeRemaining;
-    float startingTime = 300;
-    float timeRemainingReset = 300;
+    public float startingTime = 300;
+    //float timeRemainingReset = 300;
 
     [SerializeField] Text countdownText;
 
@@ -36,7 +36,7 @@ public class CountdownTimer : MonoBehaviour
         if (timeRemaining <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
-            timeRemaining = timeRemainingReset;
+            //timeRemaining = timeRemainingReset;
         }
 
     }
