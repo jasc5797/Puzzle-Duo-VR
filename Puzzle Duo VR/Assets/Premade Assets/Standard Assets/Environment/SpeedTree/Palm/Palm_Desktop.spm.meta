@@ -1,7 +1,58 @@
 fileFormatVersion: 2
-guid: d027af1092f6b434090f040565e7e656
+guid: 144af2a5f96965d42ac5167c5c7aaa3f
 SpeedTreeImporter:
-  serializedVersion: 4
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Billboard
+    second: {fileID: 2100000, guid: 4b7e2bcbbfc851c428b12203f4b25d14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_0_LOD0
+    second: {fileID: 2100000, guid: 9b661b6bf4adbe84e9f0728d1a36142a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_0_LOD1
+    second: {fileID: 2100000, guid: 5e33a29d16920314ca171e501b953e39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_0_LOD2
+    second: {fileID: 2100000, guid: eb030057c36e46b40853e65305f6e51c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_1_LOD0
+    second: {fileID: 2100000, guid: a49fd1ba33ed12c48ba651e2a7edbaa0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fronds_2_LOD0
+    second: {fileID: 2100000, guid: f9a1ec41da01a6b4e8727c4fefd45eaf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fronds_2_LOD1
+    second: {fileID: 2100000, guid: 69b5dcfb757506b4180c8afa2775674a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fronds_2_LOD2
+    second: {fileID: 2100000, guid: cf3f0dcfa06a8c6469b1e4822b0305f3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves_3_LOD0
+    second: {fileID: 2100000, guid: ab2fca2ed85e8ef48ae16a36b8a44f4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves_3_LOD1
+    second: {fileID: 2100000, guid: da611a6690fe1cc4197315cab0892a5c, type: 2}
+  serializedVersion: 5
   mainColor: {r: 1, g: 1, b: 1, a: 1}
   hueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
   alphaTestRef: 0.33
@@ -15,6 +66,7 @@ SpeedTreeImporter:
     reflectionProbeUsage: 1
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 1
     windQuality: 5
   - height: 0.25
     castShadows: 1
@@ -23,6 +75,7 @@ SpeedTreeImporter:
     reflectionProbeUsage: 1
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 1
     windQuality: 5
   - height: 0.125
     castShadows: 1
@@ -31,6 +84,7 @@ SpeedTreeImporter:
     reflectionProbeUsage: 1
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 1
     windQuality: 5
   - height: 0.01
     castShadows: 0
@@ -39,6 +93,7 @@ SpeedTreeImporter:
     reflectionProbeUsage: 0
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 1
     windQuality: 1
   enableSmoothLODTransition: 1
   animateCrossFading: 1
@@ -46,6 +101,7 @@ SpeedTreeImporter:
   fadeOutWidth: 0.25
   scaleFactor: 0.3048
   materialVersion: 3
+  materialLocation: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

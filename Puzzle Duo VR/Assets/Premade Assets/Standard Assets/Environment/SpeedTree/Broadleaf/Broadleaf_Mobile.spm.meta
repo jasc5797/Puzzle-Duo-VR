@@ -1,7 +1,43 @@
 fileFormatVersion: 2
-guid: 6aab193b7693b5e4c9741f1917d2987c
+guid: 6b5f35ae197b68e4f8187ccbf276dec8
 SpeedTreeImporter:
-  serializedVersion: 4
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Billboard
+    second: {fileID: 2100000, guid: f01389ace16dc3c44845fa059dfe601d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_0_LOD0
+    second: {fileID: 2100000, guid: a97ae29d54c2d2143812bae3d79b7787, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_0_LOD1
+    second: {fileID: 2100000, guid: 30b20f2403fd1de4c8703615567ca9fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branches_0_LOD2
+    second: {fileID: 2100000, guid: f13c93ed6dd3e9b40a4cdc467ed2ed01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves_1_LOD0
+    second: {fileID: 2100000, guid: 17d0c3dce9ea037459883710a369baa0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves_1_LOD1
+    second: {fileID: 2100000, guid: 90d82f9af1db73b4bbdc475962809be0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves_1_LOD2
+    second: {fileID: 2100000, guid: 91ffbfd9d2f2afe4f8470af27aef96a9, type: 2}
+  serializedVersion: 5
   mainColor: {r: 1, g: 1, b: 1, a: 1}
   hueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
   alphaTestRef: 0.33
@@ -15,6 +51,7 @@ SpeedTreeImporter:
     reflectionProbeUsage: 1
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 1
     windQuality: 4
   - height: 0.25
     castShadows: 1
@@ -23,6 +60,7 @@ SpeedTreeImporter:
     reflectionProbeUsage: 1
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 1
     windQuality: 4
   - height: 0.125
     castShadows: 1
@@ -31,6 +69,7 @@ SpeedTreeImporter:
     reflectionProbeUsage: 1
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 1
     windQuality: 4
   - height: 0.01
     castShadows: 0
@@ -39,6 +78,7 @@ SpeedTreeImporter:
     reflectionProbeUsage: 0
     enableBump: 1
     enableHue: 1
+    enableSubsurface: 1
     windQuality: 1
   enableSmoothLODTransition: 1
   animateCrossFading: 1
@@ -46,6 +86,7 @@ SpeedTreeImporter:
   fadeOutWidth: 0.25
   scaleFactor: 0.3048
   materialVersion: 3
+  materialLocation: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 395115150fc0faf40abd1994e7405303
+guid: 9e130a0c76c0edb44b12766122b4671b
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -55,12 +55,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Abyss
-    second: {fileID: 2100000, guid: 9b01d7c0e4dfa854eb5dfe2624e27c0f, type: 2}
+    second: {fileID: 2100000, guid: 1f7db688e3cae624187781a348a8ed5a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: floppyHand
-    second: {fileID: 2100000, guid: f1f5a7b9d67d8354799973d55caf81ad, type: 2}
+    second: {fileID: 2100000, guid: 53093c3e24e87074b94ffd1df101a18a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
