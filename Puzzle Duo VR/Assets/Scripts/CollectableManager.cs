@@ -40,8 +40,7 @@ public class CollectableManager : MonoBehaviour
 		if (CollectableList.Count > 0) {
 			SetCurrentCollectable();
 		} else {
-            int currentScene = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(currentScene);
+            SceneManager.LoadScene("Main Menu");
 		}
 
 	}

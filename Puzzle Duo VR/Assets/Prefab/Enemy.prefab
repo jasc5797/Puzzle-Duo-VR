@@ -220,12 +220,22 @@ PrefabInstance:
     - target: {fileID: 198866534812435342, guid: 9ce4142b18056ab4b813713b878856ca,
         type: 3}
       propertyPath: lengthInSec
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198866534812435342, guid: 9ce4142b18056ab4b813713b878856ca,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 3
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 198866534812435342, guid: 9ce4142b18056ab4b813713b878856ca,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 198866534812435342, guid: 9ce4142b18056ab4b813713b878856ca,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ce4142b18056ab4b813713b878856ca, type: 3}

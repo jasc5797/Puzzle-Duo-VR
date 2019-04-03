@@ -19,7 +19,14 @@ public class EnemyInteract : MonoBehaviour, Electrifiable
     // Update is called once per frame
     void Update()
     {
-        
+        if (!IsElectrified && enemyMovement.ElectrifiedTimer <= 0)
+        {
+            stunParticle.Stop();
+        } else
+        {
+            stunParticle.transform.position = gameObject.transform.position;
+            stunParticle.Play();
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -50,14 +57,8 @@ public class EnemyInteract : MonoBehaviour, Electrifiable
                 direction.y = -direction.y;
             }
             Rigidbody.AddForce(direction.normalized * 15.0f);
-
-            stunParticle.Stop();
-
         }
-        else
-        {
-            stunParticle.Play();
-        }
+
     }
 
     public void Electrify()
