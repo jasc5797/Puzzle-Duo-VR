@@ -13,6 +13,8 @@ public class PlayerInteract : MonoBehaviour
     public float TimeBetweenDamage = 2.0f;
     public float TimeBetweenKnockback = 0.5f;
 
+    public Canvas GameOverCanvas;
+
     private CharacterController CharacterController;
 
     private Vector3 impact = Vector3.zero;
@@ -59,8 +61,7 @@ public class PlayerInteract : MonoBehaviour
             slider.value--;
             if (slider.value == 0)
             {
-                int currentScene = SceneManager.GetActiveScene().buildIndex;
-                SceneManager.LoadScene(currentScene);
+                StartCoroutine(FailLevel());
             }
 
             Debug.Log("TakeDamage");
@@ -79,6 +80,17 @@ public class PlayerInteract : MonoBehaviour
 
             KnockBackTimer = TimeBetweenKnockback;
         }
+    }
+
+    IEnumerator FailLevel()
+    {
+        GameOverCanvas.gameObject.SetActive(true);
+        GameOverCanvas.GetComponent<PanelFadeIn>().FadeIn();
+        //Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(5);
+        //Time.timeScale = 1;
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
     }
 
 }

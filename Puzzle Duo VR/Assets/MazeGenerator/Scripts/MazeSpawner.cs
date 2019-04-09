@@ -21,7 +21,8 @@ public class MazeSpawner : MonoBehaviour {
 	public GameObject Wall = null;
 	public GameObject Pillar = null;
     public GameObject Roof = null;
-	public int Rows = 5;
+    public bool AddRoof = true;
+    public int Rows = 5;
 	public int Columns = 5;
 	public float CellWidth = 5;
 	public float CellHeight = 5;
@@ -37,6 +38,11 @@ public class MazeSpawner : MonoBehaviour {
     public GameObject DoorPrefab = null;
     public int EnemyCount = 5;
     public GameObject EnemyPrefab = null;
+
+    public ParticleSystem FireWorksParticleSystem = null;
+
+    private List<ParticleSystem> FireWorks = new List<ParticleSystem>();
+    
 
 	private BasicMazeGenerator mMazeGenerator = null;
 
@@ -81,16 +87,19 @@ public class MazeSpawner : MonoBehaviour {
 		}
 		mMazeGenerator.GenerateMaze ();
 		for (int row = 0; row < Rows; row++) {
-			for(int column = 0; column < Columns; column++){
-				float x = column*(CellWidth+(AddGaps?.2f:0));
-				float z = row*(CellHeight+(AddGaps?.2f:0));
-				MazeCell cell = mMazeGenerator.GetMazeCell(row,column);
-				GameObject tmp;
-				tmp = Instantiate(Floor,new Vector3(x,0,z), Quaternion.Euler(0,0,0)) as GameObject;
-				tmp.transform.parent = transform;
-
-                tmp = Instantiate(Roof, new Vector3(x, 4, z), Quaternion.Euler(-90, 0, 0)) as GameObject;
+            for (int column = 0; column < Columns; column++) {
+                float x = column * (CellWidth + (AddGaps ? .2f : 0));
+                float z = row * (CellHeight + (AddGaps ? .2f : 0));
+                MazeCell cell = mMazeGenerator.GetMazeCell(row, column);
+                GameObject tmp;
+                tmp = Instantiate(Floor, new Vector3(x, 0, z), Quaternion.Euler(0, 0, 0)) as GameObject;
                 tmp.transform.parent = transform;
+
+                if (AddRoof)
+                {
+                    tmp = Instantiate(Roof, new Vector3(x, 4, z), Quaternion.Euler(-90, 0, 0)) as GameObject;
+                    tmp.transform.parent = transform;
+                }
 
                 if (cell.WallRight){
 					tmp = Instantiate(Wall,new Vector3(x+CellWidth/2,0,z)+Wall.transform.position,Quaternion.Euler(0,90,0)) as GameObject;// right
@@ -217,37 +226,67 @@ public class MazeSpawner : MonoBehaviour {
 			CollectableManagerScript.Add(tmp);
 		}
 
-        for (int i = 0; i < DoorCount; i++)
+        if (DoorCount > 0)
         {
-            int rand = Random.Range(0, PossibleDoorPositions.Count);
-            DoorPosition doorPosition = PossibleDoorPositions[rand];
+            for (int i = 0; i < DoorCount; i++)
+            {
+                int rand = Random.Range(0, PossibleDoorPositions.Count);
+                DoorPosition doorPosition = PossibleDoorPositions[rand];
 
-            PossibleDoorPositions.RemoveAt(rand);
+                PossibleDoorPositions.RemoveAt(rand);
 
-            GameObject tmp = Instantiate(DoorPrefab, doorPosition.Position, doorPosition.Rotation) as GameObject;
-            tmp.transform.parent = transform;
+                GameObject tmp = Instantiate(DoorPrefab, doorPosition.Position, doorPosition.Rotation) as GameObject;
+                tmp.transform.parent = transform;
+            }
         }
 
-        for(int i = 0; i < EnemyCount; i++)
+        if (EnemyCount > 0)
         {
-            int rand = Random.Range(0, PossibleEnemyCells.Count);
-            Vector3 vector3 = PossibleEnemyCells[rand];
+            for (int i = 0; i < EnemyCount; i++)
+            {
+                int rand = Random.Range(0, PossibleEnemyCells.Count);
+                Vector3 vector3 = PossibleEnemyCells[rand];
 
-            PossibleEnemyCells.RemoveAt(rand);
+                PossibleEnemyCells.RemoveAt(rand);
 
-            GameObject tmp = Instantiate(EnemyPrefab, vector3, Quaternion.Euler(0, 0, 0)) as GameObject;
-            tmp.transform.parent = transform;
+                GameObject tmp = Instantiate(EnemyPrefab, vector3, Quaternion.Euler(0, 0, 0)) as GameObject;
+                tmp.transform.parent = transform;
+            }
         }
-	}
+
+        ParticleSystem fireWork1 = Instantiate(FireWorksParticleSystem, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0)) as ParticleSystem;
+        fireWork1.transform.parent = transform;
+        ParticleSystem fireWork2 = Instantiate(FireWorksParticleSystem, new Vector3(Rows * CellWidth , 0, 0), Quaternion.Euler(-90, 0, 0));
+        fireWork2.transform.parent = transform;
+        ParticleSystem fireWork3 = Instantiate(FireWorksParticleSystem, new Vector3(0, 0, Columns * CellHeight), Quaternion.Euler(-90, 0, 0));
+        fireWork3.transform.parent = transform;
+        ParticleSystem fireWork4 = Instantiate(FireWorksParticleSystem, new Vector3(Rows * CellWidth, 0, Columns * CellHeight), Quaternion.Euler(-90, 0, 0));
+        fireWork4.transform.parent = transform;
+
+        FireWorks.Add(fireWork1);
+        FireWorks.Add(fireWork2);
+        FireWorks.Add(fireWork3);
+        FireWorks.Add(fireWork4);
+    }
+
+    public void StartFireWorks()
+    {
+        Debug.Log("Starting Fire Works");
+        foreach (ParticleSystem fireWork in FireWorks)
+        {
+            Debug.Log(fireWork.transform.position);
+            fireWork.Play();
+        }
+    }
 
     private class DoorPosition
     {
         public Vector3 Position;
         public Quaternion Rotation;
 
-        public DoorPosition(Vector3 Rosition, Quaternion Rotation)
+        public DoorPosition(Vector3 Position, Quaternion Rotation)
         {
-            this.Position = Rosition;
+            this.Position = Position;
             this.Rotation = Rotation;
         }
     }

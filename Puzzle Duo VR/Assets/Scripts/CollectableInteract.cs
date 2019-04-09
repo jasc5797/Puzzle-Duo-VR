@@ -6,20 +6,28 @@ public class CollectableInteract : MonoBehaviour
 {
 	private GameObject CollectableManagerObject;
 	private CollectableManager CollectableManagerScript;
+    public ParticleSystem collectedParticleSystem;
+    public GameObject collectable;
+    public AudioClip OnCollectAudioClip;
+
+    private AudioSource audioSource;
 
 	void Start() 
 	{
 		CollectableManagerObject = GameObject.Find("Collectable Manager");
 		CollectableManagerScript = (CollectableManager)CollectableManagerObject.GetComponent(typeof(CollectableManager));
+        audioSource = GetComponent<AudioSource>();
 	}
 
-	void OnTriggerEnter (Collider other) 
+	public void HandlePlayerInteraction () 
 	{
-		Debug.Log("Object entered the trigger");
-		if (other.tag == "Player" && CollectableManagerScript.IsCurrentCollectable(gameObject)) {
-            Debug.Log("Player entered the trigger");
-            gameObject.SetActive(false);
-			CollectableManagerScript.Remove(gameObject);
+		if (CollectableManagerScript.IsCurrentCollectable(gameObject)) {
+            collectable.GetComponent<Collectable>().ScaleFade();
+            collectedParticleSystem.transform.position = collectable.transform.position;
+            CollectableManagerScript.Remove(gameObject);
+            audioSource.clip = OnCollectAudioClip;
+            audioSource.Play();
+            collectedParticleSystem.Play();
 		}
 	}
 }

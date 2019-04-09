@@ -11,6 +11,8 @@ public class FloatUpAndDown : MonoBehaviour
 
     private float OriginalY;
 
+    private bool isFloating = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,14 @@ public class FloatUpAndDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		transform.position = new Vector3(transform.position.x, OriginalY + HeightOffset + ((float)Mathf.Sin(Time.time) * Strength), transform.position.z);
+        if (isFloating)
+        {
+            transform.position = new Vector3(transform.position.x, OriginalY + HeightOffset + ((float)Mathf.Sin(Time.time) * Strength), transform.position.z);
+        }
+    }
+
+    public void Stop()
+    {
+        isFloating = false;
     }
 }

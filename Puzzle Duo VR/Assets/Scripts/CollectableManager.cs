@@ -36,15 +36,24 @@ public class CollectableManager : MonoBehaviour
 
 	public void Remove(GameObject collectable) {
 		Debug.Log("Collectable removed");
-		CollectableList.Remove(collectable);
+
+        CollectableList.Remove(collectable);
+        
 		if (CollectableList.Count > 0) {
 			SetCurrentCollectable();
 		} else {
-            int currentScene = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(currentScene);
+            StartCoroutine(EndLevel());
 		}
 
 	}
+
+    private IEnumerator EndLevel()
+    {
+        GameObject MazeSpawner = GameObject.Find("Maze Spawner");
+        MazeSpawner.GetComponent<MazeSpawner>().StartFireWorks();
+        yield return new WaitForSeconds(10);
+        SceneManager.LoadScene("Main Menu");
+    }
 
 	public bool IsCurrentCollectable(GameObject collectable) {
 		return CollectableList.Count > 0 && CollectableList[0] == collectable;
