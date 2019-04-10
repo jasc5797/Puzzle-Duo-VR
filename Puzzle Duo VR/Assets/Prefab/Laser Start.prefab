@@ -46,11 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e7728d3841a3644a4286ff81c860ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  laser: {fileID: 6392309916919148506}
+  Model: {fileID: 0}
+  Beam: {fileID: 0}
   StartingParticles: {fileID: 6518707739678809625}
   HitParticles: {fileID: 6517984158904859570}
-  maximumLength: 100
+  MaxLength: 25
+  hand: 0
+  squeezeAction: {fileID: 0}
 --- !u!1 &6392309916919148504
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +288,11 @@ PrefabInstance:
       propertyPath: InitialModule.startSpeed.scalar
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 198866534812435342, guid: 9ce4142b18056ab4b813713b878856ca,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ce4142b18056ab4b813713b878856ca, type: 3}
 --- !u!4 &6388146357049136026 stripped
@@ -314,6 +321,16 @@ PrefabInstance:
     - target: {fileID: 1344457166417818, guid: 0310b8628b5599c4295215fedba1a232, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198464213672787702, guid: 0310b8628b5599c4295215fedba1a232,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 4.2854314
+      objectReference: {fileID: 0}
+    - target: {fileID: 198464213672787702, guid: 0310b8628b5599c4295215fedba1a232,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4792296990418494, guid: 0310b8628b5599c4295215fedba1a232, type: 3}
       propertyPath: m_LocalPosition.x
@@ -358,11 +375,6 @@ PrefabInstance:
     - target: {fileID: 4792296990418494, guid: 0310b8628b5599c4295215fedba1a232, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198464213672787702, guid: 0310b8628b5599c4295215fedba1a232,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 4.2854314
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0310b8628b5599c4295215fedba1a232, type: 3}
