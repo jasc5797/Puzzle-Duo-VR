@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectedParticleSystem: {fileID: 2681255711548893896}
   collectable: {fileID: 9122159328158714207}
-  OnCollectAudioClip: {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
+  OnCollectAudioClip: {fileID: 8300000, guid: 621c91fd850120a4cadbed9e3317f17f, type: 3}
 --- !u!82 &7713610548948164352
 AudioSource:
   m_ObjectHideFlags: 0
@@ -287,11 +287,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1471580353248888077}
     m_Modifications:
-    - target: {fileID: 1237898590426036220, guid: 8ab6d5aa84e0786439e1657cb3bb4ad4,
-        type: 3}
-      propertyPath: m_Name
-      value: Sparkle
-      objectReference: {fileID: 0}
     - target: {fileID: 9216163514769354888, guid: 8ab6d5aa84e0786439e1657cb3bb4ad4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -346,6 +341,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237898590426036220, guid: 8ab6d5aa84e0786439e1657cb3bb4ad4,
+        type: 3}
+      propertyPath: m_Name
+      value: Sparkle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ab6d5aa84e0786439e1657cb3bb4ad4, type: 3}
