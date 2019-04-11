@@ -93,4 +93,9 @@ public class PlayerInteract : MonoBehaviour
         SceneManager.LoadScene(currentScene);
     }
 
+    public bool CanBeDamaged()
+    {
+        return DamageTimer > 0;
+    }
+
 }

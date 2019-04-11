@@ -23,15 +23,20 @@ public class EnemyMovement : MonoBehaviour
 
     public float ElectrifiedTimer = 0.0f;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        animator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.position = new Vector3(transform.position.x, 0.1f, transform.position.z);
         if (!EnemyInteractScript.IsElectrified && ElectrifiedTimer > 0)
         {
             ElectrifiedTimer -= Time.deltaTime;
@@ -51,6 +56,7 @@ public class EnemyMovement : MonoBehaviour
             float distance = Vector3.Distance(transform.position, PlayerTransform.position);
             if (distance >= MinDistance && distance <= MaxDistance)
             {
+                
                 Vector3 heading = PlayerTransform.position - transform.position;
                 Vector3 direction = heading / distance;
 
@@ -61,11 +67,13 @@ public class EnemyMovement : MonoBehaviour
                 int mask = ~(1 << 10);
                 if (Physics.Raycast(ray, out hit, MaxDistance, mask) && hit.collider.tag == "Player")
                 {
+                    animator.SetTrigger("Walk");
                     Vector3 PlayerPos = PlayerTransform.position;
                     Vector3 targetPos = new Vector3(PlayerPos.x, transform.position.y, PlayerPos.z);
 
                     transform.LookAt(targetPos);
                     transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+                    transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
                     PreviousPos = targetPos;
                 }
@@ -83,6 +91,7 @@ public class EnemyMovement : MonoBehaviour
             }
             else if (distance <= MaxDistance)
             {
+               
                 Vector3 heading = PlayerTransform.position - transform.position;
                 Vector3 direction = heading / distance;
 
@@ -99,6 +108,14 @@ public class EnemyMovement : MonoBehaviour
 
                     PreviousPos = targetPos;
                 }
+            }
+            else if (distance > MaxDistance)
+            {
+                animator.SetTrigger("Idle");
+            }
+            if (distance <= MinDistance)
+            {
+                //animator.SetTrigger("Attack");
             }
         }
         else

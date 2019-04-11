@@ -10,10 +10,13 @@ public class EnemyInteract : MonoBehaviour, Electrifiable
 
     public ParticleSystem stunParticle;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         stunParticle.Stop();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -24,8 +27,11 @@ public class EnemyInteract : MonoBehaviour, Electrifiable
             stunParticle.Stop();
         } else
         {
-            stunParticle.transform.position = gameObject.transform.position;
+            Vector3 parent_pos = gameObject.transform.position;
+            Vector3 stun_pos = stunParticle.transform.position;
+            stunParticle.transform.position = new Vector3(parent_pos.x, stun_pos.y, parent_pos.z);
             stunParticle.Play();
+            animator.SetTrigger("Stun");
         }
     }
 
@@ -50,13 +56,14 @@ public class EnemyInteract : MonoBehaviour, Electrifiable
         Debug.Log("Enemy hit");
         if (!IsElectrified && enemyMovement.ElectrifiedTimer <= 0)
         {
+            animator.SetTrigger("Attack");
             player.SendMessageUpwards("TakeDamage", gameObject);
             Vector3 direction = transform.position - player.transform.position;
             if (direction.y < 0)
             {
                 direction.y = -direction.y;
             }
-            Rigidbody.AddForce(direction.normalized * 15.0f);
+            //Rigidbody.AddForce(direction.normalized * 15.0f);
         }
 
     }
