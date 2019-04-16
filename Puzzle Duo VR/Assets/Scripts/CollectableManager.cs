@@ -51,7 +51,7 @@ public class CollectableManager : MonoBehaviour
     {
         GameObject MazeSpawner = GameObject.Find("Maze Spawner");
         MazeSpawner.GetComponent<MazeSpawner>().StartFireWorks();
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(15);
         SceneManager.LoadScene("Main Menu");
     }
 

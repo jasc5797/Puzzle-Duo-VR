@@ -1582,7 +1582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244cb39ab6d2a044a9f34be8a91c8175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 4
+  MoveSpeed: 3
   MinDistance: 1
   MaxDistance: 15
   Rigidbody: {fileID: 9131454061158091059}

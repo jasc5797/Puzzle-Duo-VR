@@ -85,10 +85,10 @@ public class PlayerInteract : MonoBehaviour
     IEnumerator FailLevel()
     {
         GameOverCanvas.gameObject.SetActive(true);
-        GameOverCanvas.GetComponent<PanelFadeIn>().FadeIn();
-        //Time.timeScale = 0;
+       // GameOverCanvas.GetComponent<PanelFadeIn>().FadeIn();
+        Time.timeScale = 0.1f;
         yield return new WaitForSecondsRealtime(5);
-        //Time.timeScale = 1;
+        Time.timeScale = 1;
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
     }

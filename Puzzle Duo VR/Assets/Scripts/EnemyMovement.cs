@@ -120,9 +120,9 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            Rigidbody.AddForce(transform.forward * 0.5f);
+           // Rigidbody.AddForce(transform.forward * 0.5f);
             EnemyInteractScript.IsElectrified = false;
-            Rigidbody.constraints = 0;
+            Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
         }
     }
 }
